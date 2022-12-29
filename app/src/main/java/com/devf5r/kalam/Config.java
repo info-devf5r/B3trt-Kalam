@@ -15,7 +15,7 @@ public class Config {
 
 
     //Select ads type
-    public static final String AD_TYPE = "admob";    //admob - fan - unity - startapp - applovin
+    public static final String AD_TYPE = "admob";    //admob - fan  - startapp - applovin
 
     //Native ads Position - Default is Every 5 post
     public static final int NATIVE_ADS_POSITION = 5;
@@ -25,11 +25,11 @@ public class Config {
     public static final int INTERSTITIAL_ADS_INTERVAL = 3;
 
     //Manage Ads ID - ADMOB
-    public static final String ADMOB_PUB_ID = "ca-app-pub-4935178554510860~4350881078";
-    public static final String BANNER_ID = "ca-app-pub-4935178554510860/8017280457";
-    public static final String INTER_ID = "ca-app-pub-4935178554510860/1153355177";
-    public static final String NATIVE_ID = "ca-app-pub-4935178554510860/4840452771";
-    public static final String REWARD_ADS_ID = "ca-app-pub-4935178554510860/1405971770";
+    public static final String ADMOB_PUB_ID = "ca-app-pub-2741674687620852~1390370650";
+    public static final String BANNER_ID = "ca-app-pub-2741674687620852/5016175927";
+    public static final String INTER_ID = "ca-app-pub-2741674687620852/2892026727";
+    public static final String NATIVE_ID = "ca-app-pub-2741674687620852/4824604237";
+    public static final String REWARD_ADS_ID = "ca-app-pub-2741674687620852/8001431911";
 
     //Manage Ads ID - FACEBOOK
     public static final String FACEBOOK_BANNER_ID = "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID";
@@ -39,10 +39,7 @@ public class Config {
     //Manage Ads ID - STARTAPP
     public static final String STARTAPP_ID = "#";
 
-    //Manage Ads ID - UNITY ADS
-    public static final String UNITY_GAME_ID = "#";
-    public static final String UNITY_BANNER_ID = "banner";
-    public static final String UNITY_INTER_ID = "interstitial";
+
 
     //Manage Ads ID - APPLOVIN ADS
     public static final String APPLOVIN_BANNER_ID = "banner";

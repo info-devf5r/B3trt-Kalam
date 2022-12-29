@@ -266,7 +266,7 @@ public class All_Inflater_Activity extends AppCompatActivity {
                               intent.putExtra(Intent.EXTRA_SUBJECT,getString(R.string.app_name));
                               intent.putExtra(Intent.EXTRA_TEXT,shareBodyText);
 
-                              startActivity(Intent.createChooser(intent, "Quotes App"));
+                              startActivity(Intent.createChooser(intent, "Quotes Kalam"));
                           }
                       }
                 );

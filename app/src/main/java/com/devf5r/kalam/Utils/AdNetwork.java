@@ -6,9 +6,7 @@ import static com.devf5r.kalam.Utils.Constant.AD_STATUS_ON;
 import static com.devf5r.kalam.Utils.Constant.APPLOVIN;
 import static com.devf5r.kalam.Utils.Constant.FAN;
 import static com.devf5r.kalam.Utils.Constant.STARTAPP;
-import static com.devf5r.kalam.Utils.Constant.UNITY;
-import static com.devf5r.kalam.Utils.Constant.UNITY_ADS_BANNER_HEIGHT;
-import static com.devf5r.kalam.Utils.Constant.UNITY_ADS_BANNER_WIDTH;
+
 
 import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
@@ -57,11 +55,7 @@ import com.startapp.sdk.ads.nativead.NativeAdPreferences;
 import com.startapp.sdk.ads.nativead.StartAppNativeAd;
 import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
-import com.unity3d.ads.IUnityAdsShowListener;
-import com.unity3d.ads.UnityAds;
-import com.unity3d.services.banners.BannerErrorInfo;
-import com.unity3d.services.banners.BannerView;
-import com.unity3d.services.banners.UnityBannerSize;
+
 import com.devf5r.kalam.Config;
 import com.devf5r.kalam.R;
 
@@ -207,35 +201,6 @@ public class AdNetwork {
                         }
                     });
                     startAppAdView.addView(banner);
-                    break;
-                case UNITY:
-                    RelativeLayout unityAdView = context.findViewById(R.id.unity_banner_view_container);
-                    BannerView bottomBanner = new BannerView(context, adsPref.getUnityBannerPlacementId(), new UnityBannerSize(UNITY_ADS_BANNER_WIDTH, UNITY_ADS_BANNER_HEIGHT));
-                    bottomBanner.setListener(new BannerView.IListener() {
-                        @Override
-                        public void onBannerLoaded(BannerView bannerView) {
-                            unityAdView.setVisibility(View.VISIBLE);
-                            Log.d("Unity_banner", "ready");
-                        }
-
-                        @Override
-                        public void onBannerClick(BannerView bannerView) {
-
-                        }
-
-                        @Override
-                        public void onBannerFailedToLoad(BannerView bannerView, BannerErrorInfo bannerErrorInfo) {
-                            Log.d("SupportTest", "Banner Error" + bannerErrorInfo);
-                            unityAdView.setVisibility(View.GONE);
-                        }
-
-                        @Override
-                        public void onBannerLeftApplication(BannerView bannerView) {
-
-                        }
-                    });
-                    unityAdView.addView(bottomBanner);
-                    bottomBanner.load();
                     break;
                 case APPLOVIN:
                     RelativeLayout appLovinAdView = context.findViewById(R.id.applovin_banner_view_container);
@@ -458,37 +423,7 @@ public class AdNetwork {
                         counter++;
                     }
                     break;
-                case UNITY:
-                    if (UnityAds.isReady(adsPref.getUnityInterstitialPlacementId())) {
-                        if (counter == interval) {
-                            UnityAds.show(context, adsPref.getUnityInterstitialPlacementId(), new IUnityAdsShowListener() {
-                                @Override
-                                public void onUnityAdsShowFailure(String s, UnityAds.UnityAdsShowError unityAdsShowError, String s1) {
-
-                                }
-
-                                @Override
-                                public void onUnityAdsShowStart(String s) {
-
-                                }
-
-                                @Override
-                                public void onUnityAdsShowClick(String s) {
-
-                                }
-
-                                @Override
-                                public void onUnityAdsShowComplete(String s, UnityAds.UnityAdsShowCompletionState unityAdsShowCompletionState) {
-
-                                }
-                            });
-                            counter = 1;
-                        } else {
-                            counter++;
-                        }
-                    }
-                    break;
-                case APPLOVIN:
+                 case APPLOVIN:
                     Log.d(TAG, "selected");
                     if (maxInterstitialAd.isReady()) {
                         Log.d(TAG, "ready : " + counter);

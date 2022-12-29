@@ -67,7 +67,7 @@ public class QuotesActivity extends AppCompatActivity implements SearchView.OnQu
 
         prf = new PrefManager(this);
 
-        Toast.makeText(this, "انقر لتغيير الخلفية", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Tap to Change Background", Toast.LENGTH_LONG).show();
 
         Intent intent = getIntent();
         category = intent.getStringExtra("categoryID");
@@ -123,7 +123,7 @@ public class QuotesActivity extends AppCompatActivity implements SearchView.OnQu
             public void onDataChange(DataSnapshot dataSnapshot) {
                 progressBar.setVisibility(View.GONE);
                 showRefresh(false);
-                Toast.makeText(QuotesActivity.this, "انقر لتغيير الخلفية", Toast.LENGTH_LONG).show();
+                Toast.makeText(QuotesActivity.this, "Tap to Change Background", Toast.LENGTH_LONG).show();
 
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot wallpaperSnapshot : dataSnapshot.getChildren()) {

@@ -35,7 +35,7 @@
     <string name="play_more_apps">https://play.google.com/store/apps/dev?id=7409631417125001865</string>
 
     //ads
-    <string name="admob_app_id">ca-app-pub-4935178554510860~4350881078</string>
+    <string name="admob_app_id">ca-app-pub-2741674687620852~1390370650</string>
     <string name="applovin_sdk_key">0GJdBwBnQuauCKZPxnTzDuPbawhMEWNO0GIPxco85WncDSxPZ9mPL2Qn2pvGloK6_VI6b88sSUIGKbdSBQexDm</string>
     <string name="clear_cache">مسح ذاكرة التخزين المؤقت</string>
     <string name="label_cache">حذف ومسح ذاكرات التخزين المؤقت</string>

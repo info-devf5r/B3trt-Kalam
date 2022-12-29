@@ -42,9 +42,6 @@ import static com.devf5r.kalam.Config.NATIVE_ADS_INTERVAL;
 import static com.devf5r.kalam.Config.NATIVE_ADS_POSITION;
 import static com.devf5r.kalam.Config.NATIVE_ID;
 import static com.devf5r.kalam.Config.STARTAPP_ID;
-import static com.devf5r.kalam.Config.UNITY_BANNER_ID;
-import static com.devf5r.kalam.Config.UNITY_GAME_ID;
-import static com.devf5r.kalam.Config.UNITY_INTER_ID;
 import static com.devf5r.kalam.Utils.Constant.APP_NAME;
 
 import java.util.Timer;
@@ -139,9 +136,6 @@ public class SplashActivity extends AppCompatActivity {
                 FACEBOOK_INTER_ID,
                 FACEBOOK_NATIVE_ID,
                 STARTAPP_ID,
-                UNITY_GAME_ID,
-                UNITY_BANNER_ID,
-                UNITY_INTER_ID,
                 APPLOVIN_BANNER_ID,
                 APPLOVIN_INTER_ID,
                 INTERSTITIAL_ADS_INTERVAL,

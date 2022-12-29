@@ -15,7 +15,7 @@ public class AdsPref {
         editor = sharedPreferences.edit();
     }
 
-    public void saveAds(String ad_status, String ad_type, String admob_publisher_id, String admob_app_id, String admob_banner_unit_id, String admob_interstitial_unit_id, String admob_native_unit_id, String admob_app_open_ad_unit_id, String fan_banner_unit_id, String fan_interstitial_unit_id, String fan_native_unit_id, String startapp_app_id, String unity_game_id, String unity_banner_placement_id, String unity_interstitial_placement_id, String applovin_banner_ad_unit_id, String applovin_interstitial_ad_unit_id, int interstitial_ad_interval, int native_ad_interval, int native_ad_index, String date_time, String youtube_api_key) {
+    public void saveAds(String ad_status, String ad_type, String admob_publisher_id, String admob_app_id, String admob_banner_unit_id, String admob_interstitial_unit_id, String admob_native_unit_id, String admob_app_open_ad_unit_id, String fan_banner_unit_id, String fan_interstitial_unit_id, String fan_native_unit_id, String startapp_app_id, String applovinBannerId, String applovinInterId, int interstitial_ad_interval, int native_ad_interval, int native_ad_index, String date_time, String youtube_api_key) {
         editor.putString("ad_status", ad_status);
         editor.putString("ad_type", ad_type);
         editor.putString("admob_publisher_id", admob_publisher_id);
@@ -28,11 +28,6 @@ public class AdsPref {
         editor.putString("fan_interstitial_unit_id", fan_interstitial_unit_id);
         editor.putString("fan_native_unit_id", fan_native_unit_id);
         editor.putString("startapp_app_id", startapp_app_id);
-        editor.putString("unity_game_id", unity_game_id);
-        editor.putString("unity_banner_placement_id", unity_banner_placement_id);
-        editor.putString("unity_interstitial_placement_id", unity_interstitial_placement_id);
-        editor.putString("applovin_banner_ad_unit_id", applovin_banner_ad_unit_id);
-        editor.putString("applovin_interstitial_ad_unit_id", applovin_interstitial_ad_unit_id);
         editor.putInt("interstitial_ad_interval", interstitial_ad_interval);
         editor.putInt("native_ad_interval", native_ad_interval);
         editor.putInt("native_ad_index", native_ad_index);
@@ -87,18 +82,6 @@ public class AdsPref {
 
     public String getStartappAppID() {
         return sharedPreferences.getString("startapp_app_id", "0");
-    }
-
-    public String getUnityGameId() {
-        return sharedPreferences.getString("unity_game_id", "0");
-    }
-
-    public String getUnityBannerPlacementId() {
-        return sharedPreferences.getString("unity_banner_placement_id", "banner");
-    }
-
-    public String getUnityInterstitialPlacementId() {
-        return sharedPreferences.getString("unity_interstitial_placement_id", "video");
     }
 
     public String getAppLovinBannerAdUnitId() {

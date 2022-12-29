@@ -36,9 +36,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.onesignal.OneSignal;
 import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.StartAppSDK;
-import com.unity3d.ads.IUnityAdsInitializationListener;
-import com.unity3d.ads.IUnityAdsListener;
-import com.unity3d.ads.UnityAds;
 import com.devf5r.kalam.Adapter.TabAdapter;
 import com.devf5r.kalam.BuildConfig;
 import com.devf5r.kalam.Config;
@@ -55,7 +52,7 @@ import static com.devf5r.kalam.Utils.Constant.APPLOVIN;
 import static com.devf5r.kalam.Utils.Constant.BANNER_HOME;
 import static com.devf5r.kalam.Utils.Constant.INTERSTITIAL_POST_LIST;
 import static com.devf5r.kalam.Utils.Constant.STARTAPP;
-import static com.devf5r.kalam.Utils.Constant.UNITY;
+
 
 import java.util.Map;
 
@@ -107,41 +104,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         }
                     });
                     GDPR.updateConsentStatus(this);
-                    break;
-                case UNITY:
-                    UnityAds.addListener(new IUnityAdsListener() {
-                        @Override
-                        public void onUnityAdsReady(String placementId) {
-                            Log.d(TAG, placementId);
-                        }
-
-                        @Override
-                        public void onUnityAdsStart(String placementId) {
-
-                        }
-
-                        @Override
-                        public void onUnityAdsFinish(String placementId, UnityAds.FinishState finishState) {
-
-                        }
-
-                        @Override
-                        public void onUnityAdsError(UnityAds.UnityAdsError unityAdsError, String message) {
-
-                        }
-                    });
-                    UnityAds.initialize(getApplicationContext(), adsPref.getUnityGameId(), BuildConfig.DEBUG, new IUnityAdsInitializationListener() {
-                        @Override
-                        public void onInitializationComplete() {
-                            Log.d(TAG, "Unity Ads Initialization Complete");
-                            Log.d(TAG, "Unity Ads Game ID : " + adsPref.getUnityGameId());
-                        }
-
-                        @Override
-                        public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
-                            Log.d(TAG, "Unity Ads Initialization Failed: [" + error + "] " + message);
-                        }
-                    });
                     break;
                 case APPLOVIN:
                     AppLovinSdk.getInstance(this).setMediationProvider(AppLovinMediationProvider.MAX);
