@@ -26,12 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
-import com.applovin.mediation.MaxAd;
-import com.applovin.mediation.MaxAdListener;
-import com.applovin.mediation.MaxAdViewAdListener;
-import com.applovin.mediation.MaxError;
-import com.applovin.mediation.ads.MaxAdView;
-import com.applovin.mediation.ads.MaxInterstitialAd;
+
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
 import com.facebook.ads.AdOptionsView;
@@ -48,13 +43,7 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.ads.nativead.MediaView;
-import com.startapp.sdk.ads.banner.Banner;
-import com.startapp.sdk.ads.banner.BannerListener;
-import com.startapp.sdk.ads.nativead.NativeAdDetails;
-import com.startapp.sdk.ads.nativead.NativeAdPreferences;
-import com.startapp.sdk.ads.nativead.StartAppNativeAd;
-import com.startapp.sdk.adsbase.StartAppAd;
-import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
+
 
 import com.devf5r.kalam.Config;
 import com.devf5r.kalam.R;
@@ -79,8 +68,7 @@ public class AdNetwork {
     //Interstitial
     private InterstitialAd adMobInterstitialAd;
     private com.facebook.ads.InterstitialAd fanInterstitialAd;
-    private StartAppAd startAppAd;
-    private MaxInterstitialAd maxInterstitialAd;
+
     private int retryAttempt;
     private int counter = 1;
 
@@ -178,86 +166,8 @@ public class AdNetwork {
                     com.facebook.ads.AdView.AdViewLoadConfig loadAdConfig = fanAdView.buildLoadAdConfig().withAdListener(adListener).build();
                     fanAdView.loadAd(loadAdConfig);
                     break;
-                case STARTAPP:
-                    startAppAdView = context.findViewById(R.id.startapp_banner_view_container);
-                    Banner banner = new Banner(context, new BannerListener() {
-                        @Override
-                        public void onReceiveAd(View banner) {
-                            startAppAdView.setVisibility(View.VISIBLE);
-                        }
 
-                        @Override
-                        public void onFailedToReceiveAd(View banner) {
-                            startAppAdView.setVisibility(View.GONE);
-                        }
 
-                        @Override
-                        public void onImpression(View view) {
-
-                        }
-
-                        @Override
-                        public void onClick(View banner) {
-                        }
-                    });
-                    startAppAdView.addView(banner);
-                    break;
-                case APPLOVIN:
-                    RelativeLayout appLovinAdView = context.findViewById(R.id.applovin_banner_view_container);
-                    MaxAdView maxAdView = new MaxAdView(adsPref.getAppLovinBannerAdUnitId(), context);
-                    maxAdView.setListener(new MaxAdViewAdListener() {
-                        @Override
-                        public void onAdExpanded(MaxAd ad) {
-
-                        }
-
-                        @Override
-                        public void onAdCollapsed(MaxAd ad) {
-
-                        }
-
-                        @Override
-                        public void onAdLoaded(MaxAd ad) {
-                            appLovinAdView.setVisibility(View.VISIBLE);
-                        }
-
-                        @Override
-                        public void onAdDisplayed(MaxAd ad) {
-
-                        }
-
-                        @Override
-                        public void onAdHidden(MaxAd ad) {
-
-                        }
-
-                        @Override
-                        public void onAdClicked(MaxAd ad) {
-
-                        }
-
-                        @Override
-                        public void onAdLoadFailed(String adUnitId, MaxError error) {
-                            appLovinAdView.setVisibility(View.GONE);
-                        }
-
-                        @Override
-                        public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-
-                        }
-                    });
-
-                    int width = ViewGroup.LayoutParams.MATCH_PARENT;
-                    int heightPx = context.getResources().getDimensionPixelSize(R.dimen.applovin_banner_height);
-                    maxAdView.setLayoutParams(new FrameLayout.LayoutParams(width, heightPx));
-                    if (sharedPref.getIsDarkTheme()) {
-                        maxAdView.setBackgroundColor(context.getResources().getColor(R.color.colorBackgroundDark));
-                    } else {
-                        maxAdView.setBackgroundColor(context.getResources().getColor(R.color.colorBackgroundLight));
-                    }
-                    appLovinAdView.addView(maxAdView);
-                    maxAdView.loadAd();
-                    break;
             }
         }
     }
@@ -343,50 +253,7 @@ public class AdNetwork {
                     fanInterstitialAd.loadAd(loadAdConfig);
 
                     break;
-                case STARTAPP:
-                    startAppAd = new StartAppAd(context);
 
-                    break;
-                case APPLOVIN:
-                    maxInterstitialAd = new MaxInterstitialAd(adsPref.getAppLovinInterstitialAdUnitId(), context);
-                    maxInterstitialAd.setListener(new MaxAdListener() {
-                        @Override
-                        public void onAdLoaded(MaxAd ad) {
-                            retryAttempt = 0;
-                            Log.d(TAG, "AppLovin Interstitial Ad loaded...");
-                        }
-
-                        @Override
-                        public void onAdDisplayed(MaxAd ad) {
-                        }
-
-                        @Override
-                        public void onAdHidden(MaxAd ad) {
-                            maxInterstitialAd.loadAd();
-                        }
-
-                        @Override
-                        public void onAdClicked(MaxAd ad) {
-
-                        }
-
-                        @Override
-                        public void onAdLoadFailed(String adUnitId, MaxError error) {
-                            retryAttempt++;
-                            long delayMillis = TimeUnit.SECONDS.toMillis((long) Math.pow(2, Math.min(6, retryAttempt)));
-                            new Handler().postDelayed(() -> maxInterstitialAd.loadAd(), delayMillis);
-                            Log.d(TAG, "failed to load AppLovin Interstitial");
-                        }
-
-                        @Override
-                        public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-                            maxInterstitialAd.loadAd();
-                        }
-                    });
-
-                    // Load the first ad
-                    maxInterstitialAd.loadAd();
-                    break;
             }
         }
     }
@@ -415,27 +282,7 @@ public class AdNetwork {
                     }
 
                     break;
-                case STARTAPP:
-                    if (counter == interval) {
-                        startAppAd.showAd();
-                        counter = 1;
-                    } else {
-                        counter++;
-                    }
-                    break;
-                 case APPLOVIN:
-                    Log.d(TAG, "selected");
-                    if (maxInterstitialAd.isReady()) {
-                        Log.d(TAG, "ready : " + counter);
-                        if (counter == interval) {
-                            maxInterstitialAd.showAd();
-                            counter = 1;
-                            Log.d(TAG, "show ad");
-                        } else {
-                            counter++;
-                        }
-                    }
-                    break;
+
             }
         }
     }
@@ -577,54 +424,7 @@ public class AdNetwork {
                         Log.d("NATIVE_AD", "FAN native ads has been loaded");
                     }
                     break;
-                case STARTAPP:
-                    if (startapp_native_ad.getVisibility() != View.VISIBLE) {
-                        StartAppNativeAd startAppNativeAd = new StartAppNativeAd(context);
-                        NativeAdPreferences nativePrefs = new NativeAdPreferences()
-                                .setAdsNumber(3)
-                                .setAutoBitmapDownload(true)
-                                .setPrimaryImageSize(Constant.STARTAPP_IMAGE_MEDIUM);
-                        AdEventListener adListener = new AdEventListener() {
-                            @Override
-                            public void onReceiveAd(com.startapp.sdk.adsbase.Ad arg0) {
-                                Log.d("STARTAPP_ADS", "ad loaded");
-                                startapp_native_ad.setVisibility(View.VISIBLE);
-                                //noinspection rawtypes
-                                ArrayList ads = startAppNativeAd.getNativeAds(); // get NativeAds list
 
-                                // Print all ads details to log
-                                for (Object ad : ads) {
-                                    Log.d("STARTAPP_ADS", ad.toString());
-                                }
-
-                                NativeAdDetails ad = (NativeAdDetails) ads.get(0);
-                                if (ad != null) {
-                                    startapp_native_image.setImageBitmap(ad.getImageBitmap());
-                                    startapp_native_title.setText(ad.getTitle());
-                                    startapp_native_description.setText(ad.getDescription());
-                                    startapp_native_button.setText(ad.isApp() ? "Install" : "Open");
-                                    ad.registerViewForInteraction(startapp_native_ad);
-                                }
-
-                                if (sharedPref.getIsDarkTheme()) {
-                                    startapp_native_background.setBackgroundResource(R.color.colorBackgroundDark);
-                                } else {
-                                    startapp_native_background.setBackgroundResource(R.color.colorBackgroundLight);
-                                }
-
-                            }
-
-                            @Override
-                            public void onFailedToReceiveAd(com.startapp.sdk.adsbase.Ad arg0) {
-                                startapp_native_ad.setVisibility(View.GONE);
-                                Log.d("STARTAPP_ADS", "ad failed");
-                            }
-                        };
-                        startAppNativeAd.loadAd(nativePrefs, adListener);
-                    } else {
-                        Log.d("NATIVE_AD", "StartApp native ads has been loaded");
-                    }
-                    break;
             }
 
         }

@@ -36,7 +36,6 @@
 
     //ads
     <string name="admob_app_id">ca-app-pub-2741674687620852~1390370650</string>
-    <string name="applovin_sdk_key">0GJdBwBnQuauCKZPxnTzDuPbawhMEWNO0GIPxco85WncDSxPZ9mPL2Qn2pvGloK6_VI6b88sSUIGKbdSBQexDm</string>
     <string name="clear_cache">مسح ذاكرة التخزين المؤقت</string>
     <string name="label_cache">حذف ومسح ذاكرات التخزين المؤقت</string>
     <string name="msg_cache_cleared">تم مسح ذاكرة التخزين المؤقت!</string>

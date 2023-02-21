@@ -55,8 +55,7 @@ import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
-import com.startapp.sdk.ads.nativead.NativeAdDetails;
-import com.startapp.sdk.ads.nativead.StartAppNativeAd;
+
 import com.devf5r.kalam.BuildConfig;
 import com.devf5r.kalam.Config;
 import com.devf5r.kalam.Model.FavoriteList;
@@ -106,8 +105,7 @@ public class WallpapersAdapter extends RecyclerView.Adapter implements ActivityC
     private final int VIEW_ITEM = 1;
     private final int VIEW_PROG = 0;
 
-    private StartAppNativeAd startAppNativeAd;
-    private NativeAdDetails nativeAdDetails = null;
+
     AdNetwork adNetwork;
     AdsPref adsPref;
     RewardedAd mRewardedAd;

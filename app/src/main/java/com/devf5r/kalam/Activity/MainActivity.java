@@ -15,8 +15,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.applovin.sdk.AppLovinMediationProvider;
-import com.applovin.sdk.AppLovinSdk;
+
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.AdapterStatus;
 import com.google.android.material.navigation.NavigationView;
@@ -34,8 +33,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.onesignal.OneSignal;
-import com.startapp.sdk.adsbase.StartAppAd;
-import com.startapp.sdk.adsbase.StartAppSDK;
 import com.devf5r.kalam.Adapter.TabAdapter;
 import com.devf5r.kalam.BuildConfig;
 import com.devf5r.kalam.Config;
@@ -89,10 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (adsPref.getAdStatus().equals(AD_STATUS_ON)) {
             switch (adsPref.getAdType()) {
-                case STARTAPP:
-                    StartAppSDK.setUserConsent(this, "pas", System.currentTimeMillis(), true);
-                    StartAppAd.disableSplash();
-                    break;
+
                 case ADMOB:
                     MobileAds.initialize(this, initializationStatus -> {
                         Map<String, AdapterStatus> statusMap = initializationStatus.getAdapterStatusMap();
@@ -105,16 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     });
                     GDPR.updateConsentStatus(this);
                     break;
-                case APPLOVIN:
-                    AppLovinSdk.getInstance(this).setMediationProvider(AppLovinMediationProvider.MAX);
-                    AppLovinSdk.getInstance(this).initializeSdk(config -> {
-                    });
-                    final String sdkKey = AppLovinSdk.getInstance(getApplicationContext()).getSdkKey();
-                    if (!sdkKey.equals(getString(R.string.applovin_sdk_key))) {
-                        Log.e(TAG, "AppLovin ERROR : Please update your sdk key in the manifest file.");
-                    }
-                    Log.d(TAG, "AppLovin SDK Key : " + sdkKey);
-                    break;
+
             }
         }
 

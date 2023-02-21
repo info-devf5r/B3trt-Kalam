@@ -29,7 +29,7 @@ public class Config {
     public static final String BANNER_ID = "ca-app-pub-2741674687620852/5016175927";
     public static final String INTER_ID = "ca-app-pub-2741674687620852/2892026727";
     public static final String NATIVE_ID = "ca-app-pub-2741674687620852/4824604237";
-    public static final String REWARD_ADS_ID = "ca-app-pub-2741674687620852/8001431911";
+    public static final String REWARD_ADS_ID = "ca-app-pub-2741674687620852/7244753948";
 
     //Manage Ads ID - FACEBOOK
     public static final String FACEBOOK_BANNER_ID = "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID";

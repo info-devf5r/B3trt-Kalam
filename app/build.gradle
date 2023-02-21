@@ -3,14 +3,14 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.devf5r.kalam"
         minSdk 21
-        targetSdk 32
-        versionCode 17
-        versionName "1.17"
+        targetSdk 33
+        versionCode 22
+        versionName "1.22"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -62,14 +62,10 @@ dependencies {
 
     //Ad network
     implementation 'com.google.android.gms:play-services-ads:21.0.0'
-    implementation 'com.startapp:inapp-sdk:4.9.1'
-    implementation 'com.applovin:applovin-sdk:11.3.3'
     implementation 'com.facebook.android:audience-network-sdk:6.11.0'
 
     //Ad network mediation
     implementation 'com.google.ads.mediation:facebook:6.11.0.0'
-    implementation 'com.applovin.mediation:google-adapter:20.3.0.0'
-    implementation 'com.applovin.mediation:facebook-adapter:6.6.0.1'
     implementation 'com.google.android.ads.consent:consent-library:1.0.8'
 }
 apply plugin: 'com.google.gms.google-services'
